@@ -1,4 +1,4 @@
-# 飲み会の割り勘ドメイン
+# 飲み会の割り勘ドメイン（＠ULS白濱チーム）
 
 - [Scala版はこちら](https://github.com/j5ik2o/warikan-domain-scala)
 - [Rust版はこちら](https://github.com/j5ik2o/warikan-domain-rust)
