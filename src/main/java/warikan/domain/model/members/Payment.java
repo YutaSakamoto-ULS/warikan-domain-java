@@ -8,50 +8,28 @@ import warikan.domain.model.Money;
 
 /** 支払い金額 */
 public final class Payment {
-  /** 少なめの支払金額 */
-  private final Money LittleMembersPayment;
-  /** ふつうの支払金額 */
-  private final Money MeanMembersPayment;
-  /** 多めの支払金額 */
-  private final Money muchMembersPayment;
+  /** 支払い金額 */
+  private final Money payment;
 
-  private Payment(@Nonnull Money LittleMembersPayment, @Nonnull Money MeanMembersPayment,
-      @Nonnull Money muchMembersPayment) {
-    this.LittleMembersPayment = LittleMembersPayment;
-    this.MeanMembersPayment = MeanMembersPayment;
-    this.muchMembersPayment = muchMembersPayment;
+  private Payment(@Nonnull Money payment) {
+    this.payment = payment;
   }
 
   /**
    * ファクトリメソッド。
    *
-   * @param LittleMembersPayment 少なめの支払金額。
-   * @param MeanMembersPayment   ふつうの支払金額。
-   * @param muchMembersPayment   多めの支払金額。
+   * @param payment 少なめの支払金額。
    * @return {@link Payment}
    */
   @Nonnull
-  public static Payment of(@Nonnull Money LittleMembersPayment, @Nonnull Money MeanMembersPayment,
-      @Nonnull Money muchMembersPayment) {
-    return new Payment(LittleMembersPayment, MeanMembersPayment, muchMembersPayment);
+  public static Payment of(@Nonnull Money payment) {
+    return new Payment(payment);
   }
 
   /** getter */
   @Nonnull
-  public Money LittleMembersPayment() {
-    return this.LittleMembersPayment;
-  }
-
-  /** getter */
-  @Nonnull
-  public Money MeanMembersPayment() {
-    return this.MeanMembersPayment;
-  }
-
-  /** getter */
-  @Nonnull
-  public Money muchMembersPayment() {
-    return this.muchMembersPayment;
+  public Money payment() {
+    return this.payment;
   }
 
   /**
