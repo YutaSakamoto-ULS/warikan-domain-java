@@ -13,12 +13,6 @@ import warikan.domain.model.members.Member;
 import warikan.domain.model.members.Payment;
 import warikan.domain.model.members.PaymentRatio;
 
-/**
- * どこまでやる？
- * ・値オブジェクトを作成
- * ・値オブジェクト内で必要なメソッドを作成する
- *   ・どんなメソッドが必要か検討（来週2/までに考えてくる）
- */
 public class Party {
   private final PartyName partyName;
   private final TotalPayment totalPayment; // TODO: 請求金額用の値オブジェクトを作成。その中でMoneyを使用

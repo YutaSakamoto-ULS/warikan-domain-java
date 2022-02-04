@@ -31,6 +31,17 @@ public final class Member {
     return new Member(name, paymentRatio, payment);
   }
   
+  /**
+   * ファクトリメソッド。支払割合を設定する用
+   *
+   * @param paymentRatio {@link PaymentRatio}
+   * @return {@link Member}
+   */
+  @Nonnull
+  public Member of(@Nonnull PaymentRatio paymentRatio) {
+    return new Member(this.name, paymentRatio, this.payment);
+  }
+  
   /** getter */
   @Nonnull
   public MemberName name() {
