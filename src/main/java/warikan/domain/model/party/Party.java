@@ -61,19 +61,19 @@ public class Party {
     this.members = this.members.stream().map(member -> member.setPayment(paymentMap.get(member.paymentRatio()))).toList();
   }
 
-  // private Party(@Nonnull PartyName partyName, Money claimMoney, LocalDateTime dateTime, int littleRatio){
-  //   this.partyName = partyName;
-  //   this.claimMoney = claimMoney;
-  //   this.dateTime = dateTime;
-  //   this.littleRatio = littleRatio;
-  // }
+  private Party(@Nonnull PartyName partyName, TotalPayment totalPayment, PartyDatetime dateTime, LittleRatio littleRatio){
+    this.partyName = partyName;
+    this.totalPayment = totalPayment;
+    this.dateTime = dateTime;
+    this.littleRatio = littleRatio;
+  }
 
   /**
    * ファクトリメソッド
    */
-  // @Nonnull
-  // public static Party of(@Nonnull PartyName partyName, @Nonnull Money claimMoney,
-  // @Nonnull LocalDateTime dateTime, @Nonnull int littleRatio){
-  //   return new Party(partyName, claimMoney, dateTime, littleRatio);
-  // }
+  @Nonnull
+  public static Party of(@Nonnull PartyName partyName, @Nonnull TotalPayment totalPayment,
+  @Nonnull PartyDatetime dateTime, @Nonnull LittleRatio littleRatio){
+    return new Party(partyName, totalPayment, dateTime, littleRatio);
+  }
 }
