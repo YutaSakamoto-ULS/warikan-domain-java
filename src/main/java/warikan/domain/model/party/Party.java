@@ -11,6 +11,7 @@ import warikan.domain.model.members.Member;
 import warikan.domain.model.members.Members;
 import warikan.domain.model.members.Payment;
 import warikan.domain.model.members.PaymentRatio;
+import warikan.domain.model.members.PaymentService;
 
 public class Party {
   private final PartyName partyName;
@@ -56,17 +57,17 @@ public class Party {
     long memberNum = muchNum + meanNum + littleNum;
     
     // 平均金額を決定
-    Payment meanPayment = Payment.calculateMeanMembersPayment(totalPayment,memberNum);
+    Payment meanPayment = PaymentService.calculateMeanMembersPayment(totalPayment,memberNum);
     paymentMap.put(PaymentRatio.Mean, meanPayment);
 
     // 弱者控除
-    Payment littlePayment = Payment.calculateLittleMembersPayment(meanPayment, littleRatio);
+    Payment littlePayment = PaymentService.calculateLittleMembersPayment(meanPayment, littleRatio);
     paymentMap.put(PaymentRatio.Little, littlePayment);
 
     // 多めの人の支払金額を決定
     Money meanMembersTotalPayment = meanPayment.times(meanNum);
     Money littleMembersTotalPayment = littlePayment.times(littleNum);
-    Payment muchPayment = Payment.calculateMuchMembersPayment(littleMembersTotalPayment, meanMembersTotalPayment, totalPayment, muchNum);
+    Payment muchPayment = PaymentService.calculateMuchMembersPayment(littleMembersTotalPayment, meanMembersTotalPayment, totalPayment, muchNum);
     
     paymentMap.put(PaymentRatio.Much,muchPayment);
 
