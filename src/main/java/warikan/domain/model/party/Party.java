@@ -42,7 +42,7 @@ public class Party {
 
   // 支払い金額設定
   public void setPayment(Map<PaymentRatio,Payment> paymentMap){
-    this.members.setPayment(paymentMap);
+    this.members = this.members.setPayment(paymentMap);
   }
 
   public TotalPayment totalPayment(){

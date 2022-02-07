@@ -1,11 +1,12 @@
-package warikan.domain.model.party;
+package warikan.domain.service.party;
 
 import java.util.HashMap;
 
 import warikan.domain.model.Money;
 import warikan.domain.model.members.Payment;
 import warikan.domain.model.members.PaymentRatio;
-import warikan.domain.model.members.PaymentService;
+import warikan.domain.model.party.Party;
+import warikan.domain.service.members.PaymentService;
 
 public final class PartyService {
   public static Party decidePayment(Party party){
@@ -31,6 +32,7 @@ public final class PartyService {
       paymentMap.put(PaymentRatio.Little, littlePayment);
   
       // 多めの人の支払金額を決定
+      // TODO 掛け算はPaymentServiceに移していいかも
       Money meanMembersTotalPayment = meanPayment.times(meanNum);
       Money littleMembersTotalPayment = littlePayment.times(littleNum);
       Payment muchPayment = PaymentService.calculateMuchMembersPayment(littleMembersTotalPayment, meanMembersTotalPayment, party.totalPayment(), muchNum);
