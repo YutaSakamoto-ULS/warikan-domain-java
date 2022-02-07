@@ -2,6 +2,8 @@ package warikan.domain.model.members;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.Validate;
 
@@ -56,6 +58,12 @@ public final class Members {
     return new Members(currentMembers);
   }
 
+  public void displayMembers() {
+    for (Member member:values){
+      System.out.println(member.toString());
+    }
+  }
+
   /**
    * 支払区分が多めの人数を取得する
    */
@@ -75,6 +83,13 @@ public final class Members {
    */
   public long sizeOfLittle() {
     return this.values.stream().filter(member -> member.paymentRatio() == PaymentRatio.Little).count();
+  }
+
+  /**
+   * 支払い金額を設定する
+   */
+  public Members setPayment(Map<PaymentRatio,Payment> paymentMap) {
+    return Members.of( this.values.stream().map(member -> member.of(paymentMap.get(member.paymentRatio()))).toList() );
   }
 
 }

@@ -24,6 +24,19 @@ public final class TotalPayment {
     return new TotalPayment(value);
   }
 
+  @Nonnull
+  public Money amount(){
+    return this.value;
+  }
+
+  public Money subtract(Money money){
+    return this.value.subtract(money);
+  }
+
+  public Money divide(long sizeOf) {
+    return this.value.divide(sizeOf);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

@@ -1,6 +1,7 @@
 package warikan.domain.model.party;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import javax.annotation.Nonnull;
@@ -22,6 +23,11 @@ public final class PartyDatetime {
   @Nonnull
   public static PartyDatetime of(@Nonnull LocalDateTime value) {
     return new PartyDatetime(value);
+  }
+
+  public String format(){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    return this.value.format(formatter);
   }
 
   @Override

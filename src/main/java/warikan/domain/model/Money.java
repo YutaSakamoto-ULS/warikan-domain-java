@@ -145,12 +145,12 @@ public final class Money implements Comparable<Money> {
   }
 
   @Nonnull
-  BigDecimal amount() {
+  public BigDecimal amount() {
     return amount;
   }
 
   @Nonnull
-  Currency currency() {
+  public Currency currency() {
     return currency;
   }
 

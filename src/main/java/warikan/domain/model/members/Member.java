@@ -41,6 +41,17 @@ public final class Member {
   public Member of(@Nonnull PaymentRatio paymentRatio) {
     return new Member(this.name, paymentRatio, this.payment);
   }
+
+  /**
+   * ファクトリメソッド。支払金額を設定する用
+   *
+   * @param paymentR {@link Payment}
+   * @return {@link Member}
+   */
+  @Nonnull
+  public Member of(@Nonnull Payment payment) {
+    return new Member(this.name, this.paymentRatio, payment);
+  }
   
   /** getter */
   @Nonnull
@@ -75,7 +86,7 @@ public final class Member {
 
   @Override
   public String toString() {
-    return "Member{" + "name=" + name + '}';
+    return String.format("%s : %s",this.name,this.payment.toString());
   }
 
 }

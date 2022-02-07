@@ -23,6 +23,12 @@ public final class LittleRatio {
     return new LittleRatio(value);
   }
 
+  @Nonnull
+  public BigDecimal amount(){
+    return this.value;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

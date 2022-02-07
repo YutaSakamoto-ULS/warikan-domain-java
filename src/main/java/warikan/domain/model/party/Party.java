@@ -1,13 +1,10 @@
 package warikan.domain.model.party;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
-import javax.management.modelmbean.ModelMBeanInfoSupport;
 
 import warikan.domain.model.Money;
 import warikan.domain.model.members.Member;
@@ -22,6 +19,22 @@ public class Party {
   private final LittleRatio littleRatio; // TODO: 弱者控除割合用の値オブジェクトを作成。その中でMoneyを使用
 
   private Members members = Members.of(new ArrayList<Member>());
+
+  private Party(@Nonnull PartyName partyName, TotalPayment totalPayment, PartyDatetime dateTime, LittleRatio littleRatio){
+    this.partyName = partyName;
+    this.totalPayment = totalPayment;
+    this.dateTime = dateTime;
+    this.littleRatio = littleRatio;
+  }
+
+  /**
+   * ファクトリメソッド
+   */
+  @Nonnull
+  public static Party of(@Nonnull PartyName partyName, @Nonnull TotalPayment totalPayment,
+  @Nonnull PartyDatetime dateTime, @Nonnull LittleRatio littleRatio){
+    return new Party(partyName, totalPayment, dateTime, littleRatio);
+  }
 
   // メンバー追加
   public void addMember(Member member){
@@ -43,39 +56,30 @@ public class Party {
     long memberNum = muchNum + meanNum + littleNum;
     
     // 平均金額を決定
-    Payment averagePayment = totalPayment.devide(memberNum);
-    paymentMap.put(PaymentRatio.Mean, averagePayment);
+    Payment meanPayment = Payment.calculateMeanMembersPayment(totalPayment,memberNum);
+    paymentMap.put(PaymentRatio.Mean, meanPayment);
 
     // 弱者控除
-    Payment littlePayment = averagePayment.devide(littleRatio);
+    Payment littlePayment = Payment.calculateLittleMembersPayment(meanPayment, littleRatio);
     paymentMap.put(PaymentRatio.Little, littlePayment);
 
-    // 負担すべき差額計算
-    Payment meanMembersTotalPayment = averagePayment.multiple(meanNum);
-    Payment littleMembersTotalPayment = littlePayment.multiple(littleNum);
-    Payment muchMembersTotalPayment = totalPayment.subtract(meanMembersTotalPayment).subtract(littleMembersTotalPayment);
-    
     // 多めの人の支払金額を決定
-    Payment muchPayment = muchMembersTotalPayment.devide(muchNum);
+    Money meanMembersTotalPayment = meanPayment.times(meanNum);
+    Money littleMembersTotalPayment = littlePayment.times(littleNum);
+    Payment muchPayment = Payment.calculateMuchMembersPayment(littleMembersTotalPayment, meanMembersTotalPayment, totalPayment, muchNum);
+    
     paymentMap.put(PaymentRatio.Much,muchPayment);
 
     // 各メンバーに支払金額を割り振る
-    this.members = this.members.stream().map(member -> member.setPayment(paymentMap.get(member.paymentRatio()))).toList();
-  }
-
-  private Party(@Nonnull PartyName partyName, TotalPayment totalPayment, PartyDatetime dateTime, LittleRatio littleRatio){
-    this.partyName = partyName;
-    this.totalPayment = totalPayment;
-    this.dateTime = dateTime;
-    this.littleRatio = littleRatio;
+    this.members = this.members.setPayment(paymentMap);
   }
 
   /**
-   * ファクトリメソッド
+   * 支払い金額表示
    */
-  @Nonnull
-  public static Party of(@Nonnull PartyName partyName, @Nonnull TotalPayment totalPayment,
-  @Nonnull PartyDatetime dateTime, @Nonnull LittleRatio littleRatio){
-    return new Party(partyName, totalPayment, dateTime, littleRatio);
+  public void display(){
+    System.out.println(String.format("%s (開催日：%s)の割り勘表",this.partyName.asString(),this.dateTime.format()));
+    this.members.displayMembers();
+    
   }
 }
