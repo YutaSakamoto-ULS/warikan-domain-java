@@ -1,14 +1,13 @@
 package warikan.domain.model.party;
 
 import java.util.Objects;
-
 import javax.annotation.Nonnull;
-
 import warikan.domain.model.Money;
 
 /** 請求金額 */
 public final class TotalPayment {
   private final Money value;
+
   private TotalPayment(@Nonnull Money value) {
     this.value = value;
   }
@@ -25,11 +24,11 @@ public final class TotalPayment {
   }
 
   @Nonnull
-  public Money amount(){
+  public Money amount() {
     return this.value;
   }
 
-  public Money subtract(Money money){
+  public Money subtract(Money money) {
     return this.value.subtract(money);
   }
 

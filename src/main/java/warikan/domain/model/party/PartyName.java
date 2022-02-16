@@ -1,7 +1,6 @@
 package warikan.domain.model.party;
 
 import java.util.Objects;
-
 import javax.annotation.Nonnull;
 
 /** 飲み会名 */

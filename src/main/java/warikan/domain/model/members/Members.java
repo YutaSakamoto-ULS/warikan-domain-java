@@ -3,7 +3,7 @@ package warikan.domain.model.members;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.Validate;
 
@@ -30,7 +30,7 @@ public final class Members {
   public boolean contains(@Nonnull Member element) {
     return values.contains(element);
   }
-  
+
   /**
    * 要素数を取得する。
    *
@@ -40,18 +40,14 @@ public final class Members {
     return values.size();
   }
 
-  /**
-   * 参加者を追加する
-   */
+  /** 参加者を追加する */
   public Members addMember(Member member) {
     var currentMembers = new ArrayList<>(values);
     currentMembers.add(member);
     return new Members(currentMembers);
   }
 
-  /**
-   * 参加者を削除する
-   */
+  /** 参加者を削除する */
   public Members deleteMember(Member member) {
     var currentMembers = new ArrayList<>(values);
     currentMembers.remove(member);
@@ -59,37 +55,41 @@ public final class Members {
   }
 
   public void displayMembers() {
-    for (Member member:values){
+    for (Member member : values) {
       System.out.println(member.toString());
     }
   }
 
-  /**
-   * 支払区分が多めの人数を取得する
-   */
+  /** 支払区分が多めの人数を取得する */
   public long sizeOfMuch() {
-    return this.values.stream().filter(member -> member.paymentRatio() == PaymentRatio.Much).count();
+    return this.values
+        .stream()
+        .filter(member -> member.paymentRatio() == PaymentRatio.Much)
+        .count();
   }
 
-  /**
-   * 支払区分がふつうの人数を取得する
-   */
+  /** 支払区分がふつうの人数を取得する */
   public long sizeOfMean() {
-    return this.values.stream().filter(member -> member.paymentRatio() == PaymentRatio.Mean).count();
+    return this.values
+        .stream()
+        .filter(member -> member.paymentRatio() == PaymentRatio.Mean)
+        .count();
   }
 
-  /**
-   * 支払区分が少なめの人数を取得する
-   */
+  /** 支払区分が少なめの人数を取得する */
   public long sizeOfLittle() {
-    return this.values.stream().filter(member -> member.paymentRatio() == PaymentRatio.Little).count();
+    return this.values
+        .stream()
+        .filter(member -> member.paymentRatio() == PaymentRatio.Little)
+        .count();
   }
 
-  /**
-   * 支払い金額を設定する
-   */
-  public Members setPayment(Map<PaymentRatio,Payment> paymentMap) {
-    return Members.of( this.values.stream().map(member -> member.of(paymentMap.get(member.paymentRatio()))).toList() );
+  /** 支払い金額を設定する */
+  public Members setPayment(Map<PaymentRatio, Payment> paymentMap) {
+    return Members.of(
+        this.values
+            .stream()
+            .map(member -> member.of(paymentMap.get(member.paymentRatio())))
+            .collect(Collectors.toList()));
   }
-
 }

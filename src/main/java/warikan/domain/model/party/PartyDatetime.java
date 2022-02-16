@@ -3,7 +3,6 @@ package warikan.domain.model.party;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
-
 import javax.annotation.Nonnull;
 
 /** 請求金額 */
@@ -25,17 +24,15 @@ public final class PartyDatetime {
     return new PartyDatetime(value);
   }
 
-  public String format(){
+  public String format() {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     return this.value.format(formatter);
   }
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
-      return true;
-    if (o == null || getClass() != o.getClass())
-      return false;
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
     PartyDatetime that = (PartyDatetime) o;
     return Objects.equals(value, that.value);
   }

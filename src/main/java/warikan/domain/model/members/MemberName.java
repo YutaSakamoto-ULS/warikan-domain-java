@@ -10,7 +10,7 @@ public final class MemberName {
   private MemberName(@Nonnull String value) {
     if (value.isEmpty()) throw new IllegalArgumentException("value is empty.");
     // 仮の制約
-    if(value.length() >= 20){
+    if (value.length() >= 20) {
       throw new IllegalArgumentException("value is over 20 characters.");
     }
     this.value = value;
