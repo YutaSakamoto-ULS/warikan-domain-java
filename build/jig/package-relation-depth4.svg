@@ -1,0 +1,57 @@
+<svg width="302px" height="251px"
+ viewBox="0.00 0.00 302.00 251.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform=" rotate(0) translate(4 247)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-247 298,-247 298,4 -4,4"/>
+<text text-anchor="middle" x="147" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">パッケージ関連図 [2019.12.1]</text>
+<g id="clust1" class="cluster">
+<title>cluster_warikan.domain.model</title>
+<polygon fill="lemonchiffon" stroke="#eedd82" stroke-width="2" points="143,-87 143,-235 286,-235 286,-87 143,-87"/>
+<text text-anchor="middle" x="214.5" y="-219.8" font-family="Times New Roman,serif" font-size="14.00">warikan.domain.model</text>
+</g>
+<!-- summary -->
+<g id="node1" class="node">
+<title>summary</title>
+<polygon fill="none" stroke="black" points="128,-205 0,-205 0,-167 134,-167 134,-199 128,-205"/>
+<polyline fill="none" stroke="black" points="128,-205 128,-199 "/>
+<polyline fill="none" stroke="black" points="134,-199 128,-199 "/>
+<text text-anchor="start" x="8" y="-189.8" font-family="Times New Roman,serif" font-size="14.00">パッケージ数: 3</text>
+<text text-anchor="start" x="8" y="-174.8" font-family="Times New Roman,serif" font-size="14.00">関連数: 4</text>
+</g>
+<!-- warikan.domain.model.members -->
+<g id="node2" class="node">
+<title>warikan.domain.model.members</title>
+<polygon fill="#eedd82" stroke="black" points="243,-204 175,-204 175,-168 243,-168 243,-204"/>
+<text text-anchor="middle" x="209" y="-182.3" font-family="Times New Roman,serif" font-size="14.00">members</text>
+</g>
+<!-- warikan.domain.model -->
+<g id="node3" class="node">
+<title>warikan.domain.model</title>
+<polygon fill="#eedd82" stroke="black" points="291.5,-59 148.5,-59 148.5,-23 291.5,-23 291.5,-59"/>
+<text text-anchor="middle" x="220" y="-37.3" font-family="Times New Roman,serif" font-size="14.00">warikan.domain.model</text>
+</g>
+<!-- warikan.domain.model.members&#45;&gt;warikan.domain.model -->
+<g id="edge1" class="edge">
+<title>warikan.domain.model.members&#45;&gt;warikan.domain.model</title>
+<path fill="none" stroke="black" d="M217.1,-167.93C221.59,-157.52 226.71,-143.79 229,-131 232.68,-110.49 230.03,-87.04 226.67,-69.36"/>
+<polygon fill="black" stroke="black" points="230.02,-68.24 224.54,-59.17 223.16,-69.67 230.02,-68.24"/>
+</g>
+<!-- warikan.domain.model.party -->
+<g id="node4" class="node">
+<title>warikan.domain.model.party</title>
+<polygon fill="#eedd82" stroke="black" points="220,-131 166,-131 166,-95 220,-95 220,-131"/>
+<text text-anchor="middle" x="193" y="-109.3" font-family="Times New Roman,serif" font-size="14.00">party</text>
+</g>
+<!-- warikan.domain.model.members&#45;&gt;warikan.domain.model.party -->
+<g id="edge3" class="edge">
+<title>warikan.domain.model.members&#45;&gt;warikan.domain.model.party</title>
+<path fill="none" stroke="red" stroke-width="2" d="M202.93,-158.05C201.68,-152.52 200.37,-146.7 199.12,-141.17"/>
+<polygon fill="red" stroke="red" stroke-width="2" points="199.51,-158.83 205.13,-167.81 206.34,-157.29 199.51,-158.83"/>
+<polygon fill="red" stroke="red" stroke-width="2" points="202.45,-140.01 196.84,-131.03 195.62,-141.55 202.45,-140.01"/>
+</g>
+<!-- warikan.domain.model.party&#45;&gt;warikan.domain.model -->
+<g id="edge2" class="edge">
+<title>warikan.domain.model.party&#45;&gt;warikan.domain.model</title>
+<path fill="none" stroke="black" d="M199.67,-94.7C202.71,-86.81 206.38,-77.3 209.76,-68.55"/>
+<polygon fill="black" stroke="black" points="213.07,-69.69 213.4,-59.1 206.54,-67.17 213.07,-69.69"/>
+</g>
+</g>
+</svg>

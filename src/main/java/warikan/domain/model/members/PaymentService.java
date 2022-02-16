@@ -1,7 +1,6 @@
-package warikan.domain.service.members;
+package warikan.domain.model.members;
 
 import warikan.domain.model.Money;
-import warikan.domain.model.members.Payment;
 import warikan.domain.model.party.LittleRatio;
 import warikan.domain.model.party.TotalPayment;
 

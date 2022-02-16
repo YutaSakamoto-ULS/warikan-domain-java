@@ -1,11 +1,10 @@
-package warikan.domain.service.party;
+package warikan.domain.model.party;
 
 import java.util.HashMap;
 import warikan.domain.model.Money;
 import warikan.domain.model.members.Payment;
 import warikan.domain.model.members.PaymentRatio;
-import warikan.domain.model.party.Party;
-import warikan.domain.service.members.PaymentService;
+import warikan.domain.model.members.PaymentService;
 
 public final class PartyService {
   public static Party decidePayment(Party party) {

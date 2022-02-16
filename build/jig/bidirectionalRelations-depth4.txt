@@ -1,0 +1,7 @@
+# warikan.domain.model.members <-> warikan.domain.model.party
+- warikan.domain.model.members.PaymentService -> warikan.domain.model.party.LittleRatio
+- warikan.domain.model.members.PaymentService -> warikan.domain.model.party.TotalPayment
+- warikan.domain.model.party.Party -> warikan.domain.model.members.Member
+- warikan.domain.model.party.Party -> warikan.domain.model.members.Members
+- warikan.domain.model.party.Party -> warikan.domain.model.members.Payment
+- warikan.domain.model.party.Party -> warikan.domain.model.members.PaymentRatio

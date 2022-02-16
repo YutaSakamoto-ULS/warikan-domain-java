@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 
-/** 請求金額 */
+/** 開催日時 */
 public final class PartyDatetime {
   private final LocalDateTime value;
 
