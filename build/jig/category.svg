@@ -1,0 +1,19 @@
+<svg width="144px" height="136px"
+ viewBox="0.00 0.00 144.00 136.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform=" rotate(0) translate(12.5 109)">
+<polygon fill="white" stroke="transparent" points="-12.5,27 -12.5,-109 131.5,-109 131.5,27 -12.5,27"/>
+<text text-anchor="middle" x="59.5" y="15.2" font-family="Times New Roman,serif" font-size="14.00">区分図 [2019.12.1]</text>
+<!-- warikan.domain.model.members.PaymentRatio -->
+<g id="node1" class="node">
+<title>warikan.domain.model.members.PaymentRatio</title>
+<polygon fill="#eedd82" stroke="black" points="108.64,-104.8 9.64,-104.8 9.64,0.2 108.64,0.2 108.64,-104.8"/>
+<text text-anchor="start" x="24.64" y="-87.1" font-family="Times New Roman,serif" font-size="14.00">支払区分</text>
+<text text-anchor="start" x="20.14" y="-72.1" font-family="Times New Roman,serif" font-size="14.00">PaymentRatio</text>
+<polygon fill="none" stroke="black" points="18.14,-45.3 18.14,-66.3 101.14,-66.3 101.14,-45.3 18.14,-45.3"/>
+<text text-anchor="start" x="43.14" y="-52.1" font-family="Times New Roman,serif" font-size="14.00">Much</text>
+<polygon fill="none" stroke="black" points="18.14,-24.3 18.14,-45.3 101.14,-45.3 101.14,-24.3 18.14,-24.3"/>
+<text text-anchor="start" x="44.14" y="-31.1" font-family="Times New Roman,serif" font-size="14.00">Mean</text>
+<polygon fill="none" stroke="black" points="18.14,-3.3 18.14,-24.3 101.14,-24.3 101.14,-3.3 18.14,-3.3"/>
+<text text-anchor="start" x="45.64" y="-10.1" font-family="Times New Roman,serif" font-size="14.00">Little</text>
+</g>
+</g>
+</svg>

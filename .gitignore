@@ -14,7 +14,8 @@
 hs_err_pid*
 
 *.iml
-build/
+build/*
+!build/jig
 .DS_Store
 .idea/
 .gradle/

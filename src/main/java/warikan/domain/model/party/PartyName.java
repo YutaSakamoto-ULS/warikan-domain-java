@@ -1,18 +1,14 @@
-package warikan.domain.model.members;
+package warikan.domain.model.party;
 
 import java.util.Objects;
 import javax.annotation.Nonnull;
 
-/** 参加者名。 */
-public final class MemberName {
+/** 飲み会名 */
+public final class PartyName {
   private final String value;
 
-  private MemberName(@Nonnull String value) {
+  private PartyName(@Nonnull String value) {
     if (value.isEmpty()) throw new IllegalArgumentException("value is empty.");
-    // 仮の制約
-    if (value.length() >= 20) {
-      throw new IllegalArgumentException("value is over 20 characters.");
-    }
     this.value = value;
   }
 
@@ -20,11 +16,11 @@ public final class MemberName {
    * ファクトリメソッド。
    *
    * @param value 参加者名。
-   * @return {@link MemberName}
+   * @return {@link PartyName}
    */
   @Nonnull
-  public static MemberName of(@Nonnull String value) {
-    return new MemberName(value);
+  public static PartyName of(@Nonnull String value) {
+    return new PartyName(value);
   }
 
   @Nonnull
@@ -36,7 +32,7 @@ public final class MemberName {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    MemberName that = (MemberName) o;
+    PartyName that = (PartyName) o;
     return Objects.equals(value, that.value);
   }
 
@@ -47,6 +43,6 @@ public final class MemberName {
 
   @Override
   public String toString() {
-    return "MemberName{" + "value='" + value + '\'' + '}';
+    return "PartyName{" + "value='" + value + '\'' + '}';
   }
 }

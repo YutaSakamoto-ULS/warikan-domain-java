@@ -5,35 +5,72 @@ import javax.annotation.Nonnull;
 
 /** 参加者。 */
 public final class Member {
+  /** 参加者名 */
   private final MemberName name;
-  private final SecretaryType secretaryType;
+  /** 支払割合 */
+  private final PaymentRatio paymentRatio;
+  /** 支払金額 */
+  private final Payment payment;
 
-  private Member(@Nonnull MemberName name, @Nonnull SecretaryType secretaryType) {
+  private Member(
+      @Nonnull MemberName name, @Nonnull PaymentRatio paymentRatio, @Nonnull Payment payment) {
     this.name = name;
-    this.secretaryType = secretaryType;
+    this.paymentRatio = paymentRatio;
+    this.payment = payment;
   }
 
   /**
    * ファクトリメソッド。
    *
    * @param name {@link MemberName}
-   * @param secretaryType {@link SecretaryType}
+   * @param paymentRatio {@link PaymentRatio}
+   * @param payment {@link Payment}
    * @return {@link Member}
    */
   @Nonnull
-  public static Member of(@Nonnull MemberName name, @Nonnull SecretaryType secretaryType) {
-    return new Member(name, secretaryType);
+  public static Member of(
+      @Nonnull MemberName name, @Nonnull PaymentRatio paymentRatio, @Nonnull Payment payment) {
+    return new Member(name, paymentRatio, payment);
   }
 
   /**
-   * ファクトリメソッド。
+   * ファクトリメソッド。支払割合を設定する用
    *
-   * @param name {@link MemberName}
+   * @param paymentRatio {@link PaymentRatio}
    * @return {@link Member}
    */
   @Nonnull
-  public static Member of(@Nonnull MemberName name) {
-    return new Member(name, SecretaryType.NonSecretary);
+  public Member of(@Nonnull PaymentRatio paymentRatio) {
+    return new Member(this.name, paymentRatio, this.payment);
+  }
+
+  /**
+   * ファクトリメソッド。支払金額を設定する用
+   *
+   * @param paymentR {@link Payment}
+   * @return {@link Member}
+   */
+  @Nonnull
+  public Member of(@Nonnull Payment payment) {
+    return new Member(this.name, this.paymentRatio, payment);
+  }
+
+  /** getter */
+  @Nonnull
+  public MemberName name() {
+    return this.name;
+  }
+
+  /** getter */
+  @Nonnull
+  public PaymentRatio paymentRatio() {
+    return this.paymentRatio;
+  }
+
+  /** getter */
+  @Nonnull
+  public Payment payment() {
+    return this.payment;
   }
 
   @Override
@@ -41,34 +78,16 @@ public final class Member {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Member member = (Member) o;
-    return Objects.equals(name, member.name) && secretaryType == member.secretaryType;
+    return Objects.equals(name, member.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, secretaryType);
+    return Objects.hash(name);
   }
 
   @Override
   public String toString() {
-    return "Member{" + "name=" + name + ", secretaryType=" + secretaryType + '}';
-  }
-
-  @Nonnull
-  MemberName name() {
-    return name;
-  }
-
-  @Nonnull
-  SecretaryType secretaryType() {
-    return secretaryType;
-  }
-
-  public boolean isSecretary() {
-    return secretaryType.equals(SecretaryType.Secretary);
-  }
-
-  public boolean nonSecretary() {
-    return !isSecretary();
+    return String.format("%s : %s", this.name, this.payment.toString());
   }
 }

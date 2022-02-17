@@ -1,9 +1,8 @@
 package warikan.domain.model.members;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.Validate;
@@ -14,31 +13,12 @@ public final class Members {
 
   private Members(@Nonnull List<Member> values) {
     Validate.notEmpty(values, "values are empty");
-    // validateSecretary(values);
     this.values = new ArrayList<>(values);
   }
 
-  private Members(@Nonnull Member head, @Nonnull List<Member> tail) {
-    List<Member> values = new ArrayList<>();
-    values.add(head);
-    values.addAll(tail);
-    // validateSecretary(values);
-    this.values = values;
-  }
-
-  private void validateSecretary(List<Member> values) {
-    if (values.stream().noneMatch(Member::isSecretary))
-      throw new IllegalArgumentException("secretaries are empty");
-  }
-
   @Nonnull
-  public static Members of(@Nonnull Member head, @Nonnull Member... tail) {
-    return of(head, Arrays.asList(tail));
-  }
-
-  @Nonnull
-  public static Members of(@Nonnull Member head, @Nonnull List<Member> tail) {
-    return new Members(head, tail);
+  public static Members of(@Nonnull List<Member> members) {
+    return new Members(members);
   }
 
   /**
@@ -52,16 +32,6 @@ public final class Members {
   }
 
   /**
-   * 述語に該当するかを返す。
-   *
-   * @param p 述語関数
-   * @return 該当する場合true
-   */
-  public boolean exists(@Nonnull Predicate<Member> p) {
-    return values.stream().anyMatch(p);
-  }
-
-  /**
    * 要素数を取得する。
    *
    * @return 要素数
@@ -70,60 +40,56 @@ public final class Members {
     return values.size();
   }
 
-  /**
-   * 指定された幹事区分の要素数を取得する。
-   *
-   * @param secretaryType {@link SecretaryType}
-   * @return 要素数
-   */
-  public int sizeOf(@Nonnull SecretaryType secretaryType) {
-    if (secretaryType.equals(SecretaryType.Secretary)) {
-      return sizeOfSecretaries();
-    } else {
-      return sizeOfNonSecretaries();
+  /** 参加者を追加する */
+  public Members addMember(Member member) {
+    var currentMembers = new ArrayList<>(values);
+    currentMembers.add(member);
+    return new Members(currentMembers);
+  }
+
+  /** 参加者を削除する */
+  public Members deleteMember(Member member) {
+    var currentMembers = new ArrayList<>(values);
+    currentMembers.remove(member);
+    return new Members(currentMembers);
+  }
+
+  public void displayMembers() {
+    for (Member member : values) {
+      System.out.println(member.toString());
     }
   }
 
-  /**
-   * 幹事の要素数を取得する。
-   *
-   * @return 要素数
-   */
-  public int sizeOfSecretaries() {
-    Long count = values.stream().filter(Member::isSecretary).count();
-    return Integer.parseInt(count.toString());
+  /** 支払区分が多めの人数を取得する */
+  public long sizeOfMuch() {
+    return this.values
+        .stream()
+        .filter(member -> member.paymentRatio() == PaymentRatio.Much)
+        .count();
   }
 
-  /**
-   * 非幹事の要素数を取得する。
-   *
-   * @return 要素数
-   */
-  public int sizeOfNonSecretaries() {
-    Long count = values.stream().filter(Member::nonSecretary).count();
-    return Integer.parseInt(count.toString());
+  /** 支払区分がふつうの人数を取得する */
+  public long sizeOfMean() {
+    return this.values
+        .stream()
+        .filter(member -> member.paymentRatio() == PaymentRatio.Mean)
+        .count();
   }
 
-  /**
-   * 幹事だけの{@link Members}を取得する。
-   *
-   * @return {@link Members}
-   */
-  @Nonnull
-  public Members secretaries() {
-    List<Member> members = values.stream().filter(Member::isSecretary).collect(Collectors.toList());
-    return new Members(members);
+  /** 支払区分が少なめの人数を取得する */
+  public long sizeOfLittle() {
+    return this.values
+        .stream()
+        .filter(member -> member.paymentRatio() == PaymentRatio.Little)
+        .count();
   }
 
-  /**
-   * 非幹事だけの{@link Members}を取得する。
-   *
-   * @return {@link Members}
-   */
-  @Nonnull
-  public Members nonSecretaries() {
-    List<Member> members =
-        values.stream().filter(Member::nonSecretary).collect(Collectors.toList());
-    return new Members(members);
+  /** 支払い金額を設定する */
+  public Members setPayment(Map<PaymentRatio, Payment> paymentMap) {
+    return Members.of(
+        this.values
+            .stream()
+            .map(member -> member.of(paymentMap.get(member.paymentRatio())))
+            .collect(Collectors.toList()));
   }
 }
