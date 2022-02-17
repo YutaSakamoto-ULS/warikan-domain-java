@@ -8,6 +8,7 @@ import warikan.domain.model.members.Members;
 import warikan.domain.model.members.Payment;
 import warikan.domain.model.members.PaymentRatio;
 
+/** 飲み会 */
 public class Party {
   private final PartyName partyName;
   private final TotalPayment totalPayment;

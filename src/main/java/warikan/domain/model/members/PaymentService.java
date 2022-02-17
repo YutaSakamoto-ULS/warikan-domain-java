@@ -4,6 +4,7 @@ import warikan.domain.model.Money;
 import warikan.domain.model.party.LittleRatio;
 import warikan.domain.model.party.TotalPayment;
 
+/** 支払金額を計算するDomainService */
 public final class PaymentService {
   /**
    * 多めの人の支払金額を計算する

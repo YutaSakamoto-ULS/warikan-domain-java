@@ -5,3 +5,7 @@
 - warikan.domain.model.party.Party -> warikan.domain.model.members.Members
 - warikan.domain.model.party.Party -> warikan.domain.model.members.Payment
 - warikan.domain.model.party.Party -> warikan.domain.model.members.PaymentRatio
+- warikan.domain.model.party.PartyService -> warikan.domain.model.members.Members
+- warikan.domain.model.party.PartyService -> warikan.domain.model.members.Payment
+- warikan.domain.model.party.PartyService -> warikan.domain.model.members.PaymentRatio
+- warikan.domain.model.party.PartyService -> warikan.domain.model.members.PaymentService

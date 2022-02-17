@@ -6,6 +6,7 @@ import warikan.domain.model.members.Payment;
 import warikan.domain.model.members.PaymentRatio;
 import warikan.domain.model.members.PaymentService;
 
+/** 割り勘するDomainService */
 public final class PartyService {
   public static Party decidePayment(Party party) {
 
