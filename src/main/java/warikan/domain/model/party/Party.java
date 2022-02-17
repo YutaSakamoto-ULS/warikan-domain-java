@@ -46,7 +46,12 @@ public class Party {
 
   /** 各メンバーの支払金額を更新する */
   public Party updatePayment(Map<PaymentRatio, Payment> paymentMap) {
-    return of(this.partyName, this.totalPayment, this.dateTime, this.littleRatio, this.members.updatePayment(paymentMap));
+    return of(
+        this.partyName,
+        this.totalPayment,
+        this.dateTime,
+        this.littleRatio,
+        this.members.updatePayment(paymentMap));
   }
 
   /** getter */
