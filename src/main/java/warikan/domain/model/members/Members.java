@@ -84,8 +84,8 @@ public final class Members {
         .count();
   }
 
-  /** 支払い金額を設定する */
-  public Members setPayment(Map<PaymentRatio, Payment> paymentMap) {
+  /** 各メンバーの支払い金額を更新する */
+  public Members updatePayment(Map<PaymentRatio, Payment> paymentMap) {
     return Members.of(
         this.values
             .stream()

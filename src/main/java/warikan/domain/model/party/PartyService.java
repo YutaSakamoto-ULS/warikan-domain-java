@@ -42,8 +42,8 @@ public final class PartyService {
 
     paymentMap.put(PaymentRatio.Much, muchPayment);
 
-    // 各メンバーに支払金額を割り振る
-    party.setPayment(paymentMap);
+    // 各メンバーの支払金額を更新する
+    party.updatePayment(paymentMap);
 
     return party;
   }
