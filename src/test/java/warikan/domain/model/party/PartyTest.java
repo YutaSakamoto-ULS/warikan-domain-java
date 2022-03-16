@@ -28,7 +28,7 @@ public class PartyTest {
 				PartyDatetime.of(LocalDateTime.now()), 
 				LittleRatio.of(BigDecimal.valueOf(120)), 
 				Members.of(List.of(shirahama, sakamoto, imuta, ishii)));
-		var calculatedParty = PartyService.decidePayment(party);
+		var calculatedParty = party.decidePayment();
 		var calculateMembers = calculatedParty.members();
 		assertThat(calculateMembers, is(equalTo(Members.of(List.of(
 				Member.of(MemberName.of("shirahama"), PaymentRatio.Much, Payment.of(Money.of(1500, Money.JPY))),
