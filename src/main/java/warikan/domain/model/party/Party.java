@@ -72,7 +72,7 @@ public class Party {
       return members.calcWarikanResults(paymentMap); // 各メンバーの支払金額を更新する
   }
   
-  public Map<PaymentRatio, Payment> calcPaymentMap() {
+  public PaymentMap calcPaymentMap() {
       long muchNum = sizeOfMuch(); // 多めの人の人数
       long meanNum = sizeOfMean(); // 普通の人の人数
       long littleNum = sizeOfLittle(); // 少なめの人の人数
@@ -81,8 +81,9 @@ public class Party {
       var meanPayment = totalPayment.divide(memberNum); // 平均金額
       var littlePayment = meanPayment.times(littleRatio.amount()); // 弱者控除
       var muchPayment = totalPayment.subtract(meanPayment.times(meanNum)).subtract(littlePayment.times(littleNum)).divide(muchNum); // 多めの人の支払金額
-      return Map.of(PaymentRatio.MEAN, Payment.of(meanPayment), // 支払い区分と支払金額の対応
+      return new PaymentMap(Map.of( // 支払い区分と支払金額の対応
+            PaymentRatio.MEAN, Payment.of(meanPayment), 
             PaymentRatio.LITTLE, Payment.of(littlePayment),
-            PaymentRatio.MUCH, Payment.of(muchPayment));
+            PaymentRatio.MUCH, Payment.of(muchPayment)));
   }
 }

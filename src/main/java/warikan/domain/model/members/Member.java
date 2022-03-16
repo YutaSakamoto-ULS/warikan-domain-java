@@ -1,10 +1,8 @@
 package warikan.domain.model.members;
 
-import java.util.Map;
-
 import javax.annotation.Nonnull;
-
 import lombok.EqualsAndHashCode;
+import warikan.domain.model.party.PaymentMap;
 
 /** 参加者。 */
 @EqualsAndHashCode
@@ -76,7 +74,7 @@ public final class Member {
     return String.format("%s", this.name);
   }
   
-  public Payment calcPayment(Map<PaymentRatio, Payment> paymentMap) {
+  public Payment calcPayment(PaymentMap paymentMap) {
 	  return paymentMap.get(paymentRatio);
   }
 }

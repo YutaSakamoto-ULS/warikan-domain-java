@@ -2,13 +2,12 @@ package warikan.domain.model.members;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.Validate;
-
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import warikan.domain.model.party.PaymentMap;
 import warikan.domain.model.party.WarikanResult;
 import warikan.domain.model.party.WarikanResults;
 
@@ -91,7 +90,7 @@ public final class Members {
         .count();
   }
 
-  public WarikanResults calcWarikanResults(Map<PaymentRatio, Payment> paymentMap) {
+  public WarikanResults calcWarikanResults(PaymentMap paymentMap) {
     return new WarikanResults(values.stream()
             .map(member -> new WarikanResult(member, member.calcPayment(paymentMap)))
             .collect(Collectors.toList()));
