@@ -2,9 +2,12 @@ package warikan.domain.model.members;
 
 import java.math.BigDecimal;
 import javax.annotation.Nonnull;
+
+import lombok.EqualsAndHashCode;
 import warikan.domain.model.Money;
 
 /** 支払い金額 */
+@EqualsAndHashCode
 public final class Payment {
   /** 支払い金額 */
   private final Money value;

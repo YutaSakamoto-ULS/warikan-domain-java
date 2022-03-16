@@ -3,7 +3,10 @@ package warikan.domain.model.members;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 
+import lombok.EqualsAndHashCode;
+
 /** 参加者。 */
+@EqualsAndHashCode
 public final class Member {
   /** 参加者名 */
   private final MemberName name;
@@ -73,18 +76,18 @@ public final class Member {
     return this.payment;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Member member = (Member) o;
-    return Objects.equals(name, member.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(name);
-  }
+//  @Override
+//  public boolean equals(Object o) {
+//    if (this == o) return true;
+//    if (o == null || getClass() != o.getClass()) return false;
+//    Member member = (Member) o;
+//    return Objects.equals(name, member.name);
+//  }
+//
+//  @Override
+//  public int hashCode() {
+//    return Objects.hash(name);
+//  }
 
   @Override
   public String toString() {

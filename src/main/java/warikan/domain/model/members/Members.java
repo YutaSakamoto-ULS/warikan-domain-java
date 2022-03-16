@@ -7,7 +7,12 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.Validate;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 /** メンバーグループ。 */
+@EqualsAndHashCode
+@ToString
 public final class Members {
   private final List<Member> values;
 
