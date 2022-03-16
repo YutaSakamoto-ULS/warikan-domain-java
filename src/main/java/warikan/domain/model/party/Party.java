@@ -52,34 +52,19 @@ public class Party {
   }
   
 
-  /** 支払区分が多めの人数を取得する */
-  public long sizeOfMuch() {
-    return members.sizeOfMuch();
-  }
-
-  /** 支払区分がふつうの人数を取得する */
-  public long sizeOfMean() {
-      return members.sizeOfMean();
-  }
-
-  /** 支払区分が少なめの人数を取得する */
-  public long sizeOfLittle() {
-      return members.sizeOfLittle();
-  }
-  
   public WarikanResults calcWarikanResults() {
-	  long muchNum = sizeOfMuch(); // 多めの人の人数
-      long meanNum = sizeOfMean(); // 普通の人の人数
-      long littleNum = sizeOfLittle(); // 少なめの人の人数
-      long memberNum = muchNum + meanNum + littleNum; // 合計人数
+	  long muchNum = members.sizeOf(PaymentRatio.MUCH); // 多めの人の人数
+      long meanNum = members.sizeOf(PaymentRatio.MEAN); // 普通の人の人数
+      long littleNum = members.sizeOf(PaymentRatio.LITTLE); // 少なめの人の人数
+      long memberNum = members.size(); // 合計人数
 
-      var meanPayment = totalPayment.divide(memberNum); // 平均金額
-      var littlePayment = meanPayment.times(littleRatio.amount()); // 弱者控除
-      var muchPayment = totalPayment.subtract(meanPayment.times(meanNum)).subtract(littlePayment.times(littleNum)).divide(muchNum); // 多めの人の支払金額
+      var meanPayment = totalPayment.divide(memberNum); // 普通の人の支払金額 = 平均金額 = 請求金額 / 合計人数
+      var littlePayment = meanPayment.times(littleRatio.amount()); // 少な目の人の支払金額 = 平均金額 * 弱者控除割合
+      var muchPayment = totalPayment.subtract(meanPayment.times(meanNum)).subtract(littlePayment.times(littleNum)).divide(muchNum); // 多めの人の支払金額 = (請求金額 - 普通の人の支払金額合計 -少な目の人の支払金額合計) / 多めの人の人数  
       var paymentMap =  new PaymentMap(Map.of( // 支払い区分と支払金額の対応
             PaymentRatio.MEAN, Payment.of(meanPayment), 
             PaymentRatio.LITTLE, Payment.of(littlePayment),
             PaymentRatio.MUCH, Payment.of(muchPayment)));
-      return members.calcWarikanResults(paymentMap); // 各メンバーの支払金額を更新する
+      return members.calcWarikanResults(paymentMap);
   }
 }

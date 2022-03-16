@@ -65,29 +65,11 @@ public final class Members {
       System.out.println(member.toString());
     }
   }
-
-  /** 支払区分が多めの人数を取得する */
-  public long sizeOfMuch() {
-    return this.values
-        .stream()
-        .filter(member -> member.isPaymentRatio(PaymentRatio.MUCH))
-        .count();
-  }
-
-  /** 支払区分がふつうの人数を取得する */
-  public long sizeOfMean() {
-    return this.values
-        .stream()
-        .filter(member -> member.isPaymentRatio(PaymentRatio.MEAN))
-        .count();
-  }
-
-  /** 支払区分が少なめの人数を取得する */
-  public long sizeOfLittle() {
-    return this.values
-        .stream()
-        .filter(member -> member.isPaymentRatio(PaymentRatio.LITTLE))
-        .count();
+  
+  public long sizeOf(PaymentRatio paymentRatio) {
+    return this.values.stream()
+      .filter(member -> member.isPaymentRatio(paymentRatio))
+      .count();
   }
 
   public WarikanResults calcWarikanResults(PaymentMap paymentMap) {
