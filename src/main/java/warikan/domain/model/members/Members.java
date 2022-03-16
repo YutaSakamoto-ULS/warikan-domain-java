@@ -2,12 +2,18 @@ package warikan.domain.model.members;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.Validate;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import warikan.domain.model.party.PaymentMap;
+import warikan.domain.model.party.WarikanResult;
+import warikan.domain.model.party.WarikanResults;
 
 /** メンバーグループ。 */
+@EqualsAndHashCode
+@ToString
 public final class Members {
   private final List<Member> values;
 
@@ -59,37 +65,16 @@ public final class Members {
       System.out.println(member.toString());
     }
   }
-
-  /** 支払区分が多めの人数を取得する */
-  public long sizeOfMuch() {
-    return this.values
-        .stream()
-        .filter(member -> member.paymentRatio() == PaymentRatio.Much)
-        .count();
+  
+  public long sizeOf(PaymentRatio paymentRatio) {
+    return this.values.stream()
+      .filter(member -> member.isPaymentRatio(paymentRatio))
+      .count();
   }
 
-  /** 支払区分がふつうの人数を取得する */
-  public long sizeOfMean() {
-    return this.values
-        .stream()
-        .filter(member -> member.paymentRatio() == PaymentRatio.Mean)
-        .count();
-  }
-
-  /** 支払区分が少なめの人数を取得する */
-  public long sizeOfLittle() {
-    return this.values
-        .stream()
-        .filter(member -> member.paymentRatio() == PaymentRatio.Little)
-        .count();
-  }
-
-  /** 各メンバーの支払い金額を更新する */
-  public Members updatePayment(Map<PaymentRatio, Payment> paymentMap) {
-    return Members.of(
-        this.values
-            .stream()
-            .map(member -> member.of(paymentMap.get(member.paymentRatio())))
+  public WarikanResults calcWarikanResults(PaymentMap paymentMap) {
+    return new WarikanResults(values.stream()
+            .map(member -> new WarikanResult(member, member.calcPayment(paymentMap)))
             .collect(Collectors.toList()));
   }
 }
