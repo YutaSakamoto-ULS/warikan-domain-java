@@ -44,16 +44,6 @@ public class Party {
     return new Party(partyName, totalPayment, dateTime, littleRatio, members);
   }
 
-  /** 各メンバーの支払金額を更新する */
-  public Party updatePayment(Map<PaymentRatio, Payment> paymentMap) {
-    return of(
-        this.partyName,
-        this.totalPayment,
-        this.dateTime,
-        this.littleRatio,
-        this.members.updatePayment(paymentMap));
-  }
-
   /** getter */
   public TotalPayment totalPayment() {
     return this.totalPayment;
@@ -92,9 +82,9 @@ public class Party {
       return members.sizeOfLittle();
   }
   
-  public Party decidePayment() {
+  public WarikanResults calcWarikanResults() {
       var paymentMap = calcPaymentMap();
-      return updatePayment(paymentMap); // 各メンバーの支払金額を更新する
+      return members.calcWarikanResults(paymentMap); // 各メンバーの支払金額を更新する
   }
   
   public Map<PaymentRatio, Payment> calcPaymentMap() {

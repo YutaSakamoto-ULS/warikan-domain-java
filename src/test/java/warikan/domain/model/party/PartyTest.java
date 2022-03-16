@@ -28,12 +28,11 @@ public class PartyTest {
 				PartyDatetime.of(LocalDateTime.now()), 
 				LittleRatio.of(BigDecimal.valueOf(120)), 
 				Members.of(List.of(shirahama, sakamoto, imuta, ishii)));
-		var calculatedParty = party.decidePayment();
-		var calculateMembers = calculatedParty.members();
-		assertThat(calculateMembers, is(equalTo(Members.of(List.of(
-				Member.of(MemberName.of("shirahama"), PaymentRatio.Much, Payment.of(Money.of(1500, Money.JPY))),
-				Member.of(MemberName.of("sakamoto"), PaymentRatio.Mean, Payment.of(Money.of(2500, Money.JPY))),
-				Member.of(MemberName.of("imuta"), PaymentRatio.Little, Payment.of(Money.of(3000, Money.JPY))),
-				Member.of(MemberName.of("ishii"), PaymentRatio.Little, Payment.of(Money.of(3000, Money.JPY))))))));
+		var warikanResults = party.calcWarikanResults();
+		assertThat(warikanResults, is(equalTo(new WarikanResults(List.of(
+				new WarikanResult(shirahama, Payment.of(Money.of(1500, Money.JPY))),
+				new WarikanResult(sakamoto, Payment.of(Money.of(2500, Money.JPY))),
+				new WarikanResult(imuta, Payment.of(Money.of(3000, Money.JPY))),
+				new WarikanResult(ishii, Payment.of(Money.of(3000, Money.JPY))))))));
 	}
 }

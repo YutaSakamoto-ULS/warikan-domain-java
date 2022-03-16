@@ -9,6 +9,8 @@ import org.apache.commons.lang3.Validate;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import warikan.domain.model.party.WarikanResult;
+import warikan.domain.model.party.WarikanResults;
 
 /** メンバーグループ。 */
 @EqualsAndHashCode
@@ -89,12 +91,9 @@ public final class Members {
         .count();
   }
 
-  /** 各メンバーの支払い金額を更新する */
-  public Members updatePayment(Map<PaymentRatio, Payment> paymentMap) {
-    return Members.of(
-        this.values
-            .stream()
-            .map(member -> member.of(paymentMap.get(member.paymentRatio())))
+  public WarikanResults calcWarikanResults(Map<PaymentRatio, Payment> paymentMap) {
+    return new WarikanResults(values.stream()
+            .map(member -> new WarikanResult(member, paymentMap.get(member.paymentRatio())))
             .collect(Collectors.toList()));
   }
 }
