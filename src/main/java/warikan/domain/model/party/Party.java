@@ -44,21 +44,6 @@ public class Party {
     return new Party(partyName, totalPayment, dateTime, littleRatio, members);
   }
 
-  /** getter */
-  public TotalPayment totalPayment() {
-    return this.totalPayment;
-  }
-
-  /** getter */
-  public LittleRatio littleRatio() {
-    return this.littleRatio;
-  }
-
-  /** getter */
-  public Members members() {
-    return this.members;
-  }
-
   /** 支払い金額を表示する */
   public void display() {
     System.out.println(

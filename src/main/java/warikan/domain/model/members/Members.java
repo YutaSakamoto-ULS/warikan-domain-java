@@ -71,7 +71,7 @@ public final class Members {
   public long sizeOfMuch() {
     return this.values
         .stream()
-        .filter(member -> member.paymentRatio() == PaymentRatio.MUCH)
+        .filter(member -> member.isPaymentRatio(PaymentRatio.MUCH))
         .count();
   }
 
@@ -79,7 +79,7 @@ public final class Members {
   public long sizeOfMean() {
     return this.values
         .stream()
-        .filter(member -> member.paymentRatio() == PaymentRatio.MEAN)
+        .filter(member -> member.isPaymentRatio(PaymentRatio.MEAN))
         .count();
   }
 
@@ -87,13 +87,13 @@ public final class Members {
   public long sizeOfLittle() {
     return this.values
         .stream()
-        .filter(member -> member.paymentRatio() == PaymentRatio.LITTLE)
+        .filter(member -> member.isPaymentRatio(PaymentRatio.LITTLE))
         .count();
   }
 
   public WarikanResults calcWarikanResults(Map<PaymentRatio, Payment> paymentMap) {
     return new WarikanResults(values.stream()
-            .map(member -> new WarikanResult(member, paymentMap.get(member.paymentRatio())))
+            .map(member -> new WarikanResult(member, member.calcPayment(paymentMap)))
             .collect(Collectors.toList()));
   }
 }

@@ -1,5 +1,7 @@
 package warikan.domain.model.members;
 
+import java.util.Map;
+
 import javax.annotation.Nonnull;
 
 import lombok.EqualsAndHashCode;
@@ -52,16 +54,8 @@ public final class Member {
     return new Member(this.name, this.paymentRatio);
   }
 
-  /** getter */
-  @Nonnull
-  public MemberName name() {
-    return this.name;
-  }
-
-  /** getter */
-  @Nonnull
-  public PaymentRatio paymentRatio() {
-    return this.paymentRatio;
+  public boolean isPaymentRatio(PaymentRatio compare) {
+    return this.paymentRatio == compare;
   }
 
 //  @Override
@@ -80,5 +74,9 @@ public final class Member {
   @Override
   public String toString() {
     return String.format("%s", this.name);
+  }
+  
+  public Payment calcPayment(Map<PaymentRatio, Payment> paymentMap) {
+	  return paymentMap.get(paymentRatio);
   }
 }
