@@ -11,14 +11,10 @@ public final class Member {
   private final MemberName name;
   /** 支払割合 */
   private final PaymentRatio paymentRatio;
-  /** 支払金額 */
-  private final Payment payment;
 
-  private Member(
-      @Nonnull MemberName name, @Nonnull PaymentRatio paymentRatio, @Nonnull Payment payment) {
+  private Member(@Nonnull MemberName name, @Nonnull PaymentRatio paymentRatio) {
     this.name = name;
     this.paymentRatio = paymentRatio;
-    this.payment = payment;
   }
 
   /**
@@ -30,9 +26,8 @@ public final class Member {
    * @return {@link Member}
    */
   @Nonnull
-  public static Member of(
-      @Nonnull MemberName name, @Nonnull PaymentRatio paymentRatio, @Nonnull Payment payment) {
-    return new Member(name, paymentRatio, payment);
+  public static Member of(@Nonnull MemberName name, @Nonnull PaymentRatio paymentRatio) {
+    return new Member(name, paymentRatio);
   }
 
   /**
@@ -43,7 +38,7 @@ public final class Member {
    */
   @Nonnull
   public Member of(@Nonnull PaymentRatio paymentRatio) {
-    return new Member(this.name, paymentRatio, this.payment);
+    return new Member(this.name, paymentRatio);
   }
 
   /**
@@ -53,8 +48,8 @@ public final class Member {
    * @return {@link Member}
    */
   @Nonnull
-  public Member of(@Nonnull Payment payment) {
-    return new Member(this.name, this.paymentRatio, payment);
+  public Member of() {
+    return new Member(this.name, this.paymentRatio);
   }
 
   /** getter */
@@ -67,12 +62,6 @@ public final class Member {
   @Nonnull
   public PaymentRatio paymentRatio() {
     return this.paymentRatio;
-  }
-
-  /** getter */
-  @Nonnull
-  public Payment payment() {
-    return this.payment;
   }
 
 //  @Override
@@ -90,6 +79,6 @@ public final class Member {
 
   @Override
   public String toString() {
-    return String.format("%s : %s", this.name, this.payment.toString());
+    return String.format("%s", this.name);
   }
 }

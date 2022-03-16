@@ -19,10 +19,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class PartyTest {
 	@Test
 	public void testWarikan() {
-		var shirahama = Member.of(MemberName.of("shirahama"), PaymentRatio.Much, null);
-		var sakamoto = Member.of(MemberName.of("sakamoto"), PaymentRatio.Mean, null);
-		var imuta = Member.of(MemberName.of("imuta"), PaymentRatio.Little, null);
-		var ishii = Member.of(MemberName.of("ishii"), PaymentRatio.Little, null);
+		var shirahama = Member.of(MemberName.of("shirahama"), PaymentRatio.Much);
+		var sakamoto = Member.of(MemberName.of("sakamoto"), PaymentRatio.Mean);
+		var imuta = Member.of(MemberName.of("imuta"), PaymentRatio.Little);
+		var ishii = Member.of(MemberName.of("ishii"), PaymentRatio.Little);
 		var party = Party.of(PartyName.of("白濱さん主催D5お疲れパーティ"), 
 				TotalPayment.of(Money.of(10000, Money.JPY)), 
 				PartyDatetime.of(LocalDateTime.now()), 
