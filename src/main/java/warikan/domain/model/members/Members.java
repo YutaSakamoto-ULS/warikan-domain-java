@@ -71,7 +71,7 @@ public final class Members {
   public long sizeOfMuch() {
     return this.values
         .stream()
-        .filter(member -> member.paymentRatio() == PaymentRatio.Much)
+        .filter(member -> member.paymentRatio() == PaymentRatio.MUCH)
         .count();
   }
 
@@ -79,7 +79,7 @@ public final class Members {
   public long sizeOfMean() {
     return this.values
         .stream()
-        .filter(member -> member.paymentRatio() == PaymentRatio.Mean)
+        .filter(member -> member.paymentRatio() == PaymentRatio.MEAN)
         .count();
   }
 
@@ -87,7 +87,7 @@ public final class Members {
   public long sizeOfLittle() {
     return this.values
         .stream()
-        .filter(member -> member.paymentRatio() == PaymentRatio.Little)
+        .filter(member -> member.paymentRatio() == PaymentRatio.LITTLE)
         .count();
   }
 

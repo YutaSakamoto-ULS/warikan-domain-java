@@ -96,8 +96,8 @@ public class Party {
       var meanPayment = totalPayment.divide(memberNum); // 平均金額
       var littlePayment = meanPayment.times(littleRatio.amount()); // 弱者控除
       var muchPayment = totalPayment.subtract(meanPayment.times(meanNum)).subtract(littlePayment.times(littleNum)).divide(muchNum); // 多めの人の支払金額
-      return Map.of(PaymentRatio.Mean, Payment.of(meanPayment), // 支払い区分と支払金額の対応
-            PaymentRatio.Little, Payment.of(littlePayment),
-            PaymentRatio.Much, Payment.of(muchPayment));
+      return Map.of(PaymentRatio.MEAN, Payment.of(meanPayment), // 支払い区分と支払金額の対応
+            PaymentRatio.LITTLE, Payment.of(littlePayment),
+            PaymentRatio.MUCH, Payment.of(muchPayment));
   }
 }
